@@ -909,7 +909,7 @@ else if(rules2[1] == "Malam"  && rules2[0] == "Terang" || rules2[1] == "Pagi_sor
   cout<<"Z Lampu : "<<z2<<endl;
 }
 
-void main()
+int main()
 {   
   cari_suhu();
   cari_kelembapan();
@@ -951,4 +951,6 @@ void main()
   cout<<"z : "<<z<<endl;
   cout<<("kondisi_lampu : "+string(kondisi_lampu))<<endl;
   cout<<endl;
+  getch();
+  return 0;
 }
