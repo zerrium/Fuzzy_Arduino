@@ -66,7 +66,7 @@ String hasil_cahaya[6],hasil_waktu[6],rules2[2],kondisi_lampu;
 float nilai_cahaya[6],nilai_waktu[6];
 float nilai_implikasi_x2[4],nilai_predikat2[2];
 float Def_nilai_cahaya[2],Def_nilai_waktu[2],batas_cahaya[3];
-int N_cahaya;
+float N_cahaya;
 float N_waktu;
 float a3,a4,aa4,aa5,aa6,M4,M5,M6,selisih2,z2;
 bool firstBoot=true; //flag to sync variables from Blynk cloud
@@ -106,7 +106,7 @@ BLYNK_WRITE(V2){ //kipas button
 //prosedur sensor 
 int random_cahaya(){ //every 2 secs
   int T_cahaya;
-  T_cahaya = 135;//lightMeter.readLightLevel();
+  T_cahaya = 135.0;//lightMeter.readLightLevel();
   Blynk.virtualWrite(V9, T_cahaya); //Update value to Blynk app
   return roundf(T_cahaya * 100)/100;
 }
@@ -317,6 +317,7 @@ void cari_kelembapan(){
   
 void cari_cahaya(){
   N_cahaya = random_cahaya(); 
+   Serial.println("Nilai A Cahaya  : "+String(N_cahaya));
   //cari nilai_cahaya anggota 
   //suhu
   //Gelap
@@ -380,6 +381,7 @@ void cari_cahaya(){
 
       hasil_cahaya[4] = "Redup";
       nilai_cahaya[4] = (200 - N_cahaya) / (200 - 150);
+
     }
   else{
 
@@ -586,7 +588,8 @@ void predikat2(){
     const int NK = sizeof(nilai_waktu) / sizeof(float);
     int tz = 0;
     for(int i=0; i<N; i++){
-    
+        Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
+        Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));    
       if(nilai_cahaya[i] != 0){
 
         Def_nilai_cahaya[tz]= nilai_cahaya[i];
@@ -1119,4 +1122,4 @@ void loop(){
   timer.run();
 }
 
-//Last change on 5th July 2020 at 20:49
+//Last change on 5th July 2020 at 22:25
