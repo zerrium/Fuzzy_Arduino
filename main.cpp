@@ -317,7 +317,7 @@ void cari_kelembapan(){
   
 void cari_cahaya(){
   N_cahaya = random_cahaya(); 
-   Serial.println("Nilai A Cahaya  : "+String(N_cahaya));
+  //Serial.println("Nilai A Cahaya  : "+String(N_cahaya));
   //cari nilai_cahaya anggota 
   //suhu
   //Gelap
@@ -1088,7 +1088,7 @@ void loopp()
     Blynk.virtualWrite(V3, "mati"); 
   }
   Serial.println("kondisi_kipas : "+kondisi_kipas);
-  Serial.println();
+  Serial.println("-------------------------------------------\n");
 
   if(z2 <= 10){
     kondisi_lampu = "mati";
@@ -1114,7 +1114,7 @@ void loopp()
     Blynk.virtualWrite(V1, "mati");
   }
   Serial.println("kondisi_lampu : "+String(kondisi_lampu));
-  Serial.println("\n");
+  Serial.println();
 }
 
 void loop(){
