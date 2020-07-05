@@ -500,11 +500,11 @@ void cari_waktu(){
     hasil_waktu[5] = "M_istirahat";
     nilai_waktu[5] = 0;
   }
-  else if(21 < N_waktu && N_waktu <= 23 )
+  else if(21.0 < N_waktu && N_waktu <= 23.99999999 )
   {
 
     hasil_waktu[5] = "M_istirahat";
-    nilai_waktu[5] = (N_waktu - 21) / (23 - 21);
+    nilai_waktu[5] = (N_waktu - 21) / (23.99999999 - 21);
   }
   else
   {
@@ -589,8 +589,7 @@ void predikat2(){
     const int NK = sizeof(nilai_waktu) / sizeof(float);
     int tz = 0;
     for(int i=0; i<N; i++){
-        //Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
-        //Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));    
+        
       if(nilai_cahaya[i] != 0){
 
         Def_nilai_cahaya[tz]= nilai_cahaya[i];
@@ -602,8 +601,8 @@ void predikat2(){
           rules2[0] = hasil_cahaya[i];
         }
         
-        //Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
-        //Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));
+//        Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
+//        Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));
         tz++;
       }
     }
@@ -619,8 +618,8 @@ void predikat2(){
         else {
             rules2[1] = hasil_waktu[i];
           }
-        //Serial.println("hasil_waktu : "+String(hasil_waktu[i]));
-        //Serial.println("nilai_waktu : "+String(nilai_waktu[i]));
+//        Serial.println("hasil_waktu : "+String(hasil_waktu[i]));
+//        Serial.println("nilai_waktu : "+String(nilai_waktu[i]));
         tx++;
       }
           
@@ -946,10 +945,10 @@ void defuzzy2(){
     
   
     aa4 = ((a3 - batas_cahaya[2])/2) * max_predikat2;
-    M4 = (( ((1/20)/3) * (pow(a3,3))) - (((10/20)/2) * (pow(a3,2))) ) - ((((1/20)/3) * (pow(batas_cahaya[2],3)) )- ( ((10/20)/2) * (pow(batas_cahaya[2],2)) )); 
+    M4 = (( ((1.0/20)/3) * (pow(a3,3))) - (((10.0/20)/2) * (pow(a3,2))) ) - ((((1.0/20)/3) * (pow(batas_cahaya[2],3)) )- ( ((10.0/20)/2) * (pow(batas_cahaya[2],2)) )); 
     
     aa6 = ((batas_cahaya[0] - a4)/2) * max_predikat2;
-    M6 = ((((75/45)/2) * ( pow(batas_cahaya[0],2) ))- (((1/45)/3) * (pow(batas_cahaya[0],3)))) - ((((75/45)/2) * ( pow(a4,2) ))- (((1/45)/3) * (pow(a4,3))));
+    M6 = ((((75.0/45)/2) * ( pow(batas_cahaya[0],2) ))- (((1.0/45)/3) * (pow(batas_cahaya[0],3)))) - ((((75.0/45)/2) * ( pow(a4,2) ))- (((1.0/45)/3) * (pow(a4,3))));
     
     
     
@@ -994,19 +993,19 @@ else if(rules2[1] == "Malam"  && rules2[0] == "Terang" || rules2[1] == "Pagi_sor
   }
   
   z2 = (M4 + M5 +M6) / (aa4 + aa5 + aa6);
-  
-  //Serial.println("a3 : "+String(a3));
-  //Serial.println("a4 : "+String(a4));
-  
-  //Serial.println("aa4 : "+String(aa4));
-  //Serial.println("M4 : "+String(M4));
-  
-  //Serial.println("aa5 : "+String(aa5));
-  //Serial.println("M5 : "+String(M5));
-  
-  //Serial.println("aa6 : "+String(aa6));
-  //Serial.println("M6 : "+String(M6));
-  
+//   Serial.println("maks predikat : "+String(max_predikat2));
+//  Serial.println("a3 : "+String(a3));
+//  Serial.println("a4 : "+String(a4));
+ 
+//  Serial.println("aa4 : "+String(aa4));
+//  Serial.println("M4 : "+String(M4));
+ 
+//  Serial.println("aa5 : "+String(aa5));
+//  Serial.println("M5 : "+String(M5));
+
+//  Serial.println("aa6 : "+String(aa6));
+//  Serial.println("M6 : "+String(M6));
+
   Serial.println("Z Lampu : "+String(z2));
 }
 
