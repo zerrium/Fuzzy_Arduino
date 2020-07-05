@@ -29,13 +29,13 @@ float a3,a4,aa4,aa5,aa6,M4,M5,M6,selisih2,z2;
 //prosedur sensor 
 int random_cahaya(){ //every 2 secs
   int T_cahaya;
-  T_cahaya = 200;
+  T_cahaya = 550;
   return roundf(T_cahaya * 100)/100;
 }
 
 float random_waktu(){
   float T_waktu;
-  T_waktu = 3; //get time from RTC Blynk server
+  T_waktu = 14.05; //get time from RTC Blynk server
   return roundf(T_waktu * 100)/100;
 }
 
