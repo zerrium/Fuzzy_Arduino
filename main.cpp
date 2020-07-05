@@ -84,19 +84,19 @@ BLYNK_WRITE(V0){ //lampu button
   if(firstBoot){
     digitalWrite(device1, LOW); //ON relay (inverted)
   }
-  Serial.println("RELAYYY BUTTON TRIGGERED!!!");
+  //Serial.println("RELAYYY BUTTON TRIGGERED!!!");
   int x = param.asInt(); //get parameter from Blynk app
   int val = LOW;
   if(x==LOW){
     val=HIGH; //Relay, inverted input
   }
-  Serial.println(x);
-  Serial.println(val);
+  //Serial.println(x);
+  //Serial.println(val);
   digitalWrite(device1, val);
 }
 
 BLYNK_WRITE(V2){ //kipas button
-  Serial.println("RELAYYY BUTTON TRIGGERED!!!");
+  //Serial.println("RELAYYY BUTTON TRIGGERED!!!");
   fan = param.asInt(); //get parameter from Blynk app
   if(fan==LOW){
     ledcWrite(pwm1Channel, 255); //PWM
@@ -133,20 +133,20 @@ float random_kelembapan_udara(){ //every 2 secs
 
 void readPzem(){
   float powe = pzem.power();
-  Serial.print("Power: ");
-  Serial.print(powe);
-  Serial.println("W");
+  //Serial.print("Power: ");
+  //Serial.print(powe);
+  //Serial.println("W");
   Blynk.virtualWrite(V6, roundf(powe*10)/10); //Update value to Blynk app
 
   float ener = pzem.energy();
-  Serial.print("Energy: ");
-  Serial.print(ener,3);
-  Serial.println("kWh");
+  //Serial.print("Energy: ");
+  //Serial.print(ener,3);
+  //Serial.println("kWh");
   Blynk.virtualWrite(V7, roundf(ener*100)/100); //Update value to Blynk app
 
   Blynk.virtualWrite(V8, roundf(ener*cost*100)/100); //Update value to Blynk app
 
-  Serial.println("\n--------------");
+  //Serial.println("\n--------------");
 }
 
 
@@ -530,8 +530,8 @@ void predikat(){
           rules[0] = hasil_suhu[i];
         }
         
-        Serial.println("hasil_suhu : "+String(hasil_suhu[i]));
-        Serial.println("nilai_suhu : "+String(nilai_suhu[i]));
+        //Serial.println("hasil_suhu : "+String(hasil_suhu[i]));
+        //Serial.println("nilai_suhu : "+String(nilai_suhu[i]));
         tz++;
       }
     }
@@ -542,8 +542,8 @@ void predikat(){
       if(nilai_kelembapan[i] != 0){
         Def_nilai_kelembapan[tx]= nilai_kelembapan[i];
         rules[1] = hasil_kelembapan[i];
-        Serial.println("hasil_kelembapan : "+String(hasil_kelembapan[i]));
-        Serial.println("nilai_kelembapan : "+String(nilai_kelembapan[i]));
+        //Serial.println("hasil_kelembapan : "+String(hasil_kelembapan[i]));
+        //Serial.println("nilai_kelembapan : "+String(nilai_kelembapan[i]));
         tx++;
       }
           
@@ -563,22 +563,22 @@ void predikat(){
       }
     }
     
-    Serial.println("T_defuzi_suhu : "+String(T_defuzi_suhu));
-    Serial.println("T_defuzi_kelembapan : "+String(T_defuzi_kelembapan));
+    //Serial.println("T_defuzi_suhu : "+String(T_defuzi_suhu));
+    //Serial.println("T_defuzi_kelembapan : "+String(T_defuzi_kelembapan));
     
     const int T_hasil_implikasi = sizeof(nilai_implikasi_x) / sizeof(float);
     
     for(int i = 0 ; i < T_hasil_implikasi ; i++)
     {
-      Serial.println("Hasil Implikasi "+String(i+1)+" : "+String(nilai_implikasi_x[i]));
+      //Serial.println("Hasil Implikasi "+String(i+1)+" : "+String(nilai_implikasi_x[i]));
     }
     
       for(int i = 0 ; i < T_hasil_implikasi/2 ; i++)
     {
       nilai_predikat[i] = max(nilai_implikasi_x[i],nilai_implikasi_x[i+2]);
-      Serial.println("Hasil predikat "+String(i+1)+" : "+String(nilai_predikat[i]));
+      //Serial.println("Hasil predikat "+String(i+1)+" : "+String(nilai_predikat[i]));
     }
-    Serial.println();
+    //Serial.println();
 }
 
 void predikat2(){
@@ -588,8 +588,8 @@ void predikat2(){
     const int NK = sizeof(nilai_waktu) / sizeof(float);
     int tz = 0;
     for(int i=0; i<N; i++){
-        Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
-        Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));    
+        //Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
+        //Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));    
       if(nilai_cahaya[i] != 0){
 
         Def_nilai_cahaya[tz]= nilai_cahaya[i];
@@ -601,8 +601,8 @@ void predikat2(){
           rules2[0] = hasil_cahaya[i];
         }
         
-        Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
-        Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));
+        //Serial.println("hasil_cahaya : "+String(hasil_cahaya[i]));
+        //Serial.println("nilai_cahaya : "+String(nilai_cahaya[i]));
         tz++;
       }
     }
@@ -618,8 +618,8 @@ void predikat2(){
         else {
             rules2[1] = hasil_waktu[i];
           }
-        Serial.println("hasil_waktu : "+String(hasil_waktu[i]));
-        Serial.println("nilai_waktu : "+String(nilai_waktu[i]));
+        //Serial.println("hasil_waktu : "+String(hasil_waktu[i]));
+        //Serial.println("nilai_waktu : "+String(nilai_waktu[i]));
         tx++;
       }
           
@@ -642,15 +642,15 @@ void predikat2(){
     
     for(int i = 0 ; i < T_hasil_implikasi ; i++)
     {
-      Serial.println("Hasil Implikasi "+String(i+1)+" : "+String(nilai_implikasi_x2[i]));
+      //Serial.println("Hasil Implikasi "+String(i+1)+" : "+String(nilai_implikasi_x2[i]));
     }
     
       for(int i = 0 ; i < T_hasil_implikasi/2 ; i++)
     {
       nilai_predikat2[i] = max(nilai_implikasi_x2[i],nilai_implikasi_x2[i+2]);
-      Serial.println("Hasil predikat "+String(i+1)+" : "+String(nilai_predikat2[i]));
+      //Serial.println("Hasil predikat "+String(i+1)+" : "+String(nilai_predikat2[i]));
     }
-    Serial.println();
+    //Serial.println();
 }
 
 void defuzzy(){
@@ -786,19 +786,19 @@ void defuzzy(){
   }
   z = (M1 + M2 +M3) / (aa1 + aa2 + aa3);
   
-  Serial.println("a1 : "+String(a1));
-  Serial.println("a2 : "+String(a2));
+  //Serial.println("a1 : "+String(a1));
+  //Serial.println("a2 : "+String(a2));
   
-  Serial.println("aa1 : "+String(aa1));
-  Serial.println("M1 : "+String(M1));
+  //Serial.println("aa1 : "+String(aa1));
+  //Serial.println("M1 : "+String(M1));
   
-  Serial.println("aa2 : "+String(aa2));
-  Serial.println("M2 : "+String(M2));
+  //Serial.println("aa2 : "+String(aa2));
+  //Serial.println("M2 : "+String(M2));
   
-  Serial.println("aa3 : "+String(aa3));
-  Serial.println("M3 : "+String(M3));
+  //Serial.println("aa3 : "+String(aa3));
+  //Serial.println("M3 : "+String(M3));
   
-  Serial.println("z : "+String(z));
+  Serial.println("Z kipas : "+String(z));
 }
 
 void defuzzy2(){
@@ -915,7 +915,7 @@ void defuzzy2(){
   selisih2 = batas_cahaya[0] - batas_cahaya[2];
   
   float max_predikat2=max(nilai_predikat2[0],nilai_predikat2[1]);
-   Serial.println("Max Predikat2 : "+String(max_predikat2));
+   //Serial.println("Max Predikat2 : "+String(max_predikat2));
   //off
     if(rules2[1] == "M_istirahat" && rules2[0] == "Sangat_redup"|| rules2[1] == "Dini_hari"  && rules2[0] == "Sangat_redup" || rules2[1] == "M_istirahat"&& rules2[0] == "Redup" || rules2[1] == "Dini_hari"  && rules2[0] == "Redup" || rules2[1] == "M_istirahat" && rules2[0] == "Terang"|| rules2[1] == "Dini_hari" && rules2[0] == "Terang"|| rules2[1] == "Pagi_sore" && rules2[0] == "Terang"){
     a3 = (max_predikat2*(batas_cahaya[1]-batas_cahaya[2]))+batas_cahaya[2];
@@ -994,43 +994,43 @@ else if(rules2[1] == "Malam"  && rules2[0] == "Terang" || rules2[1] == "Pagi_sor
   
   z2 = (M4 + M5 +M6) / (aa4 + aa5 + aa6);
   
-  Serial.println("a3 : "+String(a3));
-  Serial.println("a4 : "+String(a4));
+  //Serial.println("a3 : "+String(a3));
+  //Serial.println("a4 : "+String(a4));
   
-  Serial.println("aa4 : "+String(aa4));
-  Serial.println("M4 : "+String(M4));
+  //Serial.println("aa4 : "+String(aa4));
+  //Serial.println("M4 : "+String(M4));
   
-  Serial.println("aa5 : "+String(aa5));
-  Serial.println("M5 : "+String(M5));
+  //Serial.println("aa5 : "+String(aa5));
+  //Serial.println("M5 : "+String(M5));
   
-  Serial.println("aa6 : "+String(aa6));
-  Serial.println("M6 : "+String(M6));
+  //Serial.println("aa6 : "+String(aa6));
+  //Serial.println("M6 : "+String(M6));
   
-  Serial.println("z2 : "+String(z2));
+  Serial.println("Z Lampu : "+String(z2));
 }
 
 void setup(){
   Serial.begin(115200);
-  Serial.println("Check 1"); //just for debugging
+  //Serial.println("Check 1"); //just for debugging
   Blynk.begin(auth,ssid,pass);
   //WiFi.begin(ssid, pass);  // Non-blocking if no WiFi available
   //Serial.println("Check 1.1");
   //Blynk.config(auth);
   //Serial.println("Check 1.2");
   //Blynk.connect();
-  Serial.println("Check 2");
+  //Serial.println("Check 2");
   Wire.begin(); //I2C Light sensor, pin 22 and 21
   lightMeter.begin(BH1750::CONTINUOUS_HIGH_RES_MODE, 0x23, &Wire); //I2C Address and light sensor mode
   dht.begin();
   rtc.begin();
-  Serial.println("Check 3");
+  //Serial.println("Check 3");
   pinMode(device1, OUTPUT);
   digitalWrite(device1, HIGH); //HIGH is off, LOW is on (revert input to relay module)
   pinMode(device2, OUTPUT);
   digitalWrite(device2, HIGH);
-  Serial.println("Check 4");
+  //Serial.println("Check 4");
   setSyncInterval(3600); // Sync interval in seconds (1 hr)
-  Serial.println("Check 5");
+  //Serial.println("Check 5");
   timer.setInterval(2000L, loopp); //run loopp function every 2 seconds
   timer.setInterval(1000L, readPzem); //read pzem data every sec
   R = (3 * log10(2))/(log10(255)); //PWM formula for LED
@@ -1122,4 +1122,4 @@ void loop(){
   timer.run();
 }
 
-//Last change on 5th July 2020 at 22:25
+//Last change on 5th July 2020 at 22:49
