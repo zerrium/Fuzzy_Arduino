@@ -113,7 +113,8 @@ int random_cahaya(){ //every 2 secs
 
 float random_waktu(){
   float T_waktu;
-  T_waktu = hour(); //get time from RTC Blynk server
+  float m = minute();
+  T_waktu = hour() + (m/60); //get time from RTC Blynk server
   return roundf(T_waktu * 100)/100;
 }
 
