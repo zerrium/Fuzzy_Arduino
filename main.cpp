@@ -106,14 +106,14 @@ BLYNK_WRITE(V2){ //kipas button
 //prosedur sensor 
 int random_cahaya(){ //every 2 secs
   int T_cahaya;
-  T_cahaya = 135.0;//lightMeter.readLightLevel();
+  T_cahaya = lightMeter.readLightLevel();
   Blynk.virtualWrite(V9, T_cahaya); //Update value to Blynk app
   return roundf(T_cahaya * 100)/100;
 }
 
 float random_waktu(){
   float T_waktu;
-  T_waktu = 11;//hour()+(minute()/60)+(second()/3600); //get time from RTC Blynk server
+  T_waktu = hour(); //get time from RTC Blynk server
   return roundf(T_waktu * 100)/100;
 }
 
