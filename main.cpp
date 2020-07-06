@@ -83,14 +83,18 @@ BLYNK_CONNECTED() {
 
 BLYNK_WRITE(V0){ //lampu button
   //Serial.println("RELAYYY BUTTON TRIGGERED!!!");
-  int x = param.asInt(); //get parameter from Blynk app
-  int val = LOW;
-  if(x==LOW){
-    val=HIGH; //Relay, inverted input
+  if(firstBoot){
+    digitalWrite(device1, LOW);
+  }else{
+    int x = param.asInt(); //get parameter from Blynk app
+    int val = LOW;
+    if(x==LOW){
+      val=HIGH; //Relay, inverted input
+    }
+    //Serial.println(x);
+    //Serial.println(val);
+    digitalWrite(device1, val);
   }
-  //Serial.println(x);
-  //Serial.println(val);
-  digitalWrite(device1, val);
 }
 
 BLYNK_WRITE(V2){ //kipas button
@@ -1120,4 +1124,4 @@ void loop(){
   timer.run();
 }
 
-//Last change on 5th July 2020 at 22:49
+//Last change on 6th July 2020 at 14:34
