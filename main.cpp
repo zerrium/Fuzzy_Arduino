@@ -75,15 +75,13 @@ const int cost=1467; //cost per kWh in IDR
 BLYNK_CONNECTED() {
   if(firstBoot){ //Get last value from Blynk server and sync it to the board upon boot
     Blynk.virtualWrite(V0, HIGH); //lampu button, ON right on boot
+    digitalWrite(device1, LOW);
     Blynk.syncVirtual(V2); //kipas button
     firstBoot=false;
   }
 }
 
 BLYNK_WRITE(V0){ //lampu button
-  if(firstBoot){
-    digitalWrite(device1, LOW); //ON relay (inverted)
-  }
   //Serial.println("RELAYYY BUTTON TRIGGERED!!!");
   int x = param.asInt(); //get parameter from Blynk app
   int val = LOW;
