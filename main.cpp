@@ -39,7 +39,7 @@ BlynkTimer timer; //timer for looping function
 WidgetRTC rtc; //rtc time from Blynk server
 
 const int device1 = 18; //GPIO pin from ESP to relay module
-const int device2 = 19;
+const int device2 = 19; //unused
 int fan = LOW; //to save fan on/off state
 
 const byte pwm1 = 27;
@@ -1013,6 +1013,7 @@ else if(rules2[1] == "Malam"  && rules2[0] == "Terang" || rules2[1] == "Pagi_sor
 
 void setup(){
   Serial.begin(115200);
+  pinMode(device1, OUTPUT);
   //Serial.println("Check 1"); //just for debugging
   Blynk.begin(auth,ssid,pass);
   //WiFi.begin(ssid, pass);  // Non-blocking if no WiFi available
@@ -1026,10 +1027,8 @@ void setup(){
   dht.begin();
   rtc.begin();
   //Serial.println("Check 3");
-  pinMode(device1, OUTPUT);
-  digitalWrite(device1, HIGH); //HIGH is off, LOW is on (revert input to relay module)
-  pinMode(device2, OUTPUT);
-  digitalWrite(device2, HIGH);
+  //pinMode(device2, OUTPUT);
+  //digitalWrite(device2, HIGH);
   //Serial.println("Check 4");
   setSyncInterval(3600); // Sync interval in seconds (1 hr)
   //Serial.println("Check 5");
@@ -1124,4 +1123,4 @@ void loop(){
   timer.run();
 }
 
-//Last change on 6th July 2020 at 14:34
+//Last change on 6th July 2020 at 14:40
